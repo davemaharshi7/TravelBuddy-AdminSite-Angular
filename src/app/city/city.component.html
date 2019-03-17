@@ -1,0 +1,83 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="container">
+  <div class="row my-2" >
+    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create New City</button>
+  </div>
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create New City</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #formC="ngForm" (ngSubmit)="submit(formC)">
+                <div class="form-group">
+                    <!-- <label for="cityid">City Name</label> -->
+                    <input type="email" ngModel #CityName="ngModel" name="CityName"  class="form-control" id="login" aria-describedby="email" placeholder="Enter City Name" required>
+                    <div class="alert alert-danger" *ngIf="CityName.invalid && CityName.touched" role="alert">
+                        CityName is required
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <!-- <label for="cityid">City Name</label> -->
+                      <input type="text" ngModel #latitude="ngModel" name="latitude"  class="form-control" id="login" aria-describedby="latitude" placeholder="Enter latitude" required>
+                      <div class="alert alert-danger" *ngIf="latitude.invalid && latitude.touched" role="alert">
+                          latitude is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="cityid">City Name</label> -->
+                        <input type="text" ngModel #longitude="ngModel" name="longitude"  class="form-control" id="login" aria-describedby="longitude" placeholder="Enter latitude" required>
+                        <div class="alert alert-danger" *ngIf="longitude.invalid && longitude.touched" role="alert">
+                            longitude is required
+                          </div>
+                      </div>  
+             <button  class="btn btn-primary  my-3" [disabled]="formC.invalid" value="submit">Create City</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Table for data -->
+  <div class="container-fluid">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">City Name</th>
+        <th scope="col">Logitude</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">For Updation</th>
+        <th scope="col">For Deletion</th>
+        <th scope="col">View its Places</th>
+        <th scope="col">View Guides</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of citys | async;let i = index">
+        <th scope="row">{{i}}</th>
+        <td>{{item.CityName}}</td>
+        <td>{{item.longitude}}</td>
+        <td>{{item.latitude}}</td>
+        <td ><a class="btn btn-primary" routerLink="/city/update/{{item.Id}}">Update City</a></td>
+        <td ><a class="btn btn-danger" (click)="delete($event,item.Id)">Delete City</a></td>
+        <td ><a class="btn btn-success" routerLink="/place/{{item.Id}}">View Places</a></td>
+        <td ><a class="btn btn-secondary" routerLink="/guides/{{item.Id}}">View Guide</a></td>
+
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+

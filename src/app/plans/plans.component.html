@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row m-2 text-center" >
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New Plan</button>
+      </div>
+     
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><h1>Add a New Plan</h1>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #formC="ngForm" (ngSubmit)="submit(formC)">
+          
+                    <div class="form-group">
+                        <input type="text" ngModel #Plan_name="ngModel" name="Plan_name"  class="form-control" aria-describedby="Plan_name" placeholder="Please Enter Plan Name" required>
+                        <div class="alert alert-danger" *ngIf="Plan_name.invalid && Plan_name.touched" role="alert">
+                            Plan_name is required
+                          </div>
+                      </div>
+                    <div class="form-group">
+                        <!-- <label for="cityid">City Name</label> -->
+                        <input type="text" ngModel #Plan_places="ngModel" name="Plan_places"  class="form-control" id="login" aria-describedby="Plan_places" placeholder="Enter Plan_places" required>
+                        <div class="alert alert-danger" *ngIf="Plan_places.invalid && Plan_places.touched" role="alert">
+                            Plan_places is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <!-- <label for="cityid">City Name</label> -->
+                          <input type="text" ngModel #Duration="ngModel" name="Duration"  class="form-control" id="login" aria-describedby="Duration" placeholder="Enter Duration" required>
+                          <div class="alert alert-danger" *ngIf="Duration.invalid && Duration.touched" role="alert">
+                              Duration is required
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                          <!-- <label for="cityid">City Name</label> -->
+                          <input type="number" ngModel #Price="ngModel" name="Price"  class="form-control" id="login" aria-describedby="Price" placeholder="Enter Price" required>
+                          <div class="alert alert-danger" *ngIf="Price.invalid && Price.touched" role="alert">
+                              Price is required
+                            </div>
+                        </div> 
+                       
+                <button  class="btn btn-primary  my-3" [disabled]="formC.invalid" value="submit">Add Plan</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h1>Plans of {{guideName}}</h1>
+        <ng-container *ngFor="let p of plans | async">
+          
+            <div class="card m-1" >
+                <div class="card-body">
+                  <h5 class="card-title">{{p.Plan_name}}</h5>
+                  <p class="card-text">Covers  - {{p.Plan_places}}</p>
+                  <p >Approximate Duration - {{p.Duration}}</p>
+                  <p>Price - {{p.Price}}</p>
+                  <a routerLink="/guide/{{guideId}}/plan/update/{{p.Id}}" class="btn btn-warning m-2">Update</a>
+                  <button (click)="delete($event,guideId,p.Id)" class="btn btn-danger m-2">Delete</button>
+                  
+                </div>
+              </div>
+          
+          </ng-container>
+        </div>
+</div>

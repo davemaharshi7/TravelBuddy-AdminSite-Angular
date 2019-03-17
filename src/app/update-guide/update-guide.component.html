@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="conatiner mt-2">
+      <p>Name : {{(items| async)?.Guide_name}}</p>
+      <p>language : {{(items| async)?.Language}}</p>
+      <p>Ratings : {{(items| async)?.Ratings}}</p>
+      <p>Availability : {{(items| async)?.Available}}</p>
+      <p>Experience : {{(items| async)?.Experience}}</p>
+      <p>Gender : {{(items| async)?.Gender}} (0 for Male and 1 for Female)</p>
+      <p>Description : {{(items| async)?.Description}}</p>
+
+
+    </div>
+    <form #formA="ngForm" (ngSubmit)="submitUpdate(formA)">
+            <div class="form-group">
+                <!-- <label for="cityid">City Name</label> -->
+                <input type="text" ngModel #Guide_name="ngModel" name="Guide_name"  class="form-control" aria-describedby="Guide_name" placeholder="Enter Guide_name" required>
+                <div class="alert alert-danger" *ngIf="Guide_name.invalid && Guide_name.touched" role="alert">
+                    Guide_name is required
+                  </div>
+              </div>
+              <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #Language="ngModel" name="Language"  class="form-control" aria-describedby="Language" placeholder="Enter Language" required>
+                  <div class="alert alert-danger" *ngIf="Language.invalid && Language.touched" role="alert">
+                      Language is required
+                    </div>
+                </div>
+                
+                <div class="form-group container">
+                    <label for="Available">Current Availability:</label>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <label class="container">Available
+                              <input type="radio" name="Available" value="true" #Available="ngModel" ngModel required>
+                              <span class="checkmark"></span>
+                            </label>
+                      </div>
+                      <div class="col-sm-6">
+                          <label class="container">Not Available
+                              <input type="radio" name="Available" value="false" #Available="ngModel" ngModel required>
+                              <span class="checkmark"></span>
+                            </label>
+                      </div>
+                    </div>    
+                    <div class="alert alert-danger" *ngIf="Available.invalid && Available.touched" role="alert">
+                        Please select Availability
+                      </div>
+                </div>
+                    <div class="form-group">
+                        <!-- <label for="cityid">City Name</label> -->
+                        <input type="text" ngModel #Experience="ngModel" name="Experience"  class="form-control" aria-describedby="Experience" placeholder="Enter Experience (in years)" required>
+                        <div class="alert alert-danger" *ngIf="Experience.invalid && Experience.touched" role="alert">
+                            Experience is required
+                          </div>
+                      </div>    
+                      <div class="form-group">
+                          <!-- <label for="cityid">City Name</label> -->
+                          <input type="text" ngModel #Description="ngModel" name="Description"  class="form-control" aria-describedby="Description" placeholder="Enter Description (short and sweet)" required>
+                          <div class="alert alert-danger" *ngIf="Description.invalid && Description.touched" role="alert">
+                              Description is required
+                            </div>
+                        </div> 
+                        
+                    <div class="form-group container">
+                          <label for="Gender">Gender:</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="container">MALE
+                                    <input type="radio" name="Gender" value="0" #Gender="ngModel" ngModel required>
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="container">FEMALE
+                                    <input type="radio" name="Gender" value="1" #Gender="ngModel" ngModel required>
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </div>
+                          </div>    
+                          <div class="alert alert-danger" *ngIf="Gender.invalid && Gender.touched" role="alert">
+                              Please select Gender
+                            </div>
+                      </div>
+                <div class="form-group">
+                    <!-- <label for="cityid">City Name</label> -->
+                    <input type="number" ngModel #Ratings="ngModel" name="Ratings"  class="form-control" aria-describedby="Ratings" placeholder="Enter Ratings" required>
+                    <div class="alert alert-danger" *ngIf="Ratings.invalid && Ratings.touched" role="alert">
+                        Ratings is required
+                      </div>
+                  </div>
+              
+         <button  class="btn btn-primary  my-3" [disabled]="formA.invalid" value="submit">Update Guide</button>
+        </form>
+  </div>

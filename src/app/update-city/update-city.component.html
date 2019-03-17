@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="conatiner mt-2">
+    <p>Current City : {{(items| async)?.CityName}}</p>
+    <p>Longitude : {{(items| async)?.longitude}}</p>
+    <p>Latitude : {{(items| async)?.latitude}}</p>
+  </div>
+<form #form="ngForm" (ngSubmit)="submitUpdate(form)">
+    <div class="form-group">
+        <!-- <label for="cityid">City Name</label> -->
+        <input type="email" ngModel #CityName="ngModel" name="CityName"  class="form-control"  id="login" aria-describedby="email" placeholder="Enter City Name " required>
+        <div class="alert alert-danger" *ngIf="CityName.invalid && CityName.touched" role="alert">
+            CityName is required
+          </div>
+      </div>
+      <div class="form-group">
+          <!-- <label for="cityid">City Name</label> -->
+          <input type="text" ngModel #latitude="ngModel" name="latitude"  class="form-control" id="login" aria-describedby="latitude" placeholder="Enter latitude" required>
+          <div class="alert alert-danger" *ngIf="latitude.invalid && latitude.touched" role="alert">
+              latitude is required
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- <label for="cityid">City Name</label> -->
+            <input type="text" ngModel #longitude="ngModel" name="longitude"  class="form-control" id="login" aria-describedby="longitude" placeholder="Enter latitude" required>
+            <div class="alert alert-danger" *ngIf="longitude.invalid && longitude.touched" role="alert">
+                longitude is required
+              </div>
+          </div>  
+ <button  class="btn btn-primary  my-3" [disabled]="form.invalid" value="submit">Update City</button>
+</form>
+</div>
+<!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->

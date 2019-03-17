@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="conatiner mt-2">
+      <p>Plan Name : {{(items| async)?.Plan_name}}</p>
+      <p>Plan Covers : {{(items| async)?.Plan_places}}</p>
+      <p>Duration : {{(items| async)?.Duration}}</p>
+      <p>Price : {{(items| async)?.Price}}</p>
+    </div>
+    <h2>Update Here:</h2>
+        <form #formC="ngForm" (ngSubmit)="submitUpdate(formC)">
+          
+            <div class="form-group">
+                <input type="text" ngModel #Plan_name="ngModel" name="Plan_name"  class="form-control" aria-describedby="Plan_name" placeholder="Please Enter Plan Name" required>
+                <div class="alert alert-danger" *ngIf="Plan_name.invalid && Plan_name.touched" role="alert">
+                    Plan_name is required
+                  </div>
+              </div>
+            <div class="form-group">
+                <!-- <label for="cityid">City Name</label> -->
+                <input type="text" ngModel #Plan_places="ngModel" name="Plan_places"  class="form-control" id="login" aria-describedby="Plan_places" placeholder="Enter Plan_places" required>
+                <div class="alert alert-danger" *ngIf="Plan_places.invalid && Plan_places.touched" role="alert">
+                    Plan_places is required
+                  </div>
+              </div>
+              <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #Duration="ngModel" name="Duration"  class="form-control" id="login" aria-describedby="Duration" placeholder="Enter Duration" required>
+                  <div class="alert alert-danger" *ngIf="Duration.invalid && Duration.touched" role="alert">
+                      Duration is required
+                    </div>
+                </div>  
+                <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="number" ngModel #Price="ngModel" name="Price"  class="form-control" id="login" aria-describedby="Price" placeholder="Enter Price" required>
+                  <div class="alert alert-danger" *ngIf="Price.invalid && Price.touched" role="alert">
+                      Price is required
+                    </div>
+                </div> 
+               
+        <button  class="btn btn-primary  my-3" [disabled]="formC.invalid" value="submit">Update Plan</button>
+        </form>
+  </div>

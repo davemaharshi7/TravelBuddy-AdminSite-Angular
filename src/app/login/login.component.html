@@ -1,0 +1,43 @@
+<!-- <div *ngIf="afAuth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+  <p>Please login.</p> -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="assets/img/tb.png" max-height="250px" max-width="200px" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form #form="ngForm" (ngSubmit)="submit(form)">
+          <div class="form-group">
+              <!-- <label for="cityid">City Name</label> -->
+              <input type="email" ngModel #email="ngModel" name="email"  class="form-control" aria-describedby="email" placeholder="Enter Email" required>
+              <div class="alert alert-danger" *ngIf="email.invalid && email.touched" role="alert">
+                  Email is required
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- <label for="cityid">City Name</label> -->
+                <input type="password" ngModel #pass="ngModel" name="pass"  class="form-control"  aria-describedby="password" placeholder="Enter password" required>
+                <div class="alert alert-danger" *ngIf="pass.invalid && pass.touched" role="alert">
+                    password is required
+                  </div>
+              </div>
+       <button  class="btn btn-primary  my-3" [disabled]="form.invalid" value="Log In">Login</button>
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div> -->
+  
+    </div>
+  </div>
+  <!-- <button (click)="login()">Login with Google</button>
+</ng-template> -->

@@ -1,0 +1,110 @@
+  <!-- <p>Please select City:</p>
+  <select >
+    <option value="">- Select -</option>
+    <option *ngFor="let sport of items | async" [value]="sport.Id">{{sport.CityName}}</option>
+</select> -->
+
+
+
+<div class="container">
+    <div class="row m-2 text-center" >
+      <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create New Place</button>
+    </div>
+   
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><h1>Add a New Place for {{cityName}}</h1>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div *ngIf="downloadURL">
+                  <input type="text" value="{{ downloadURL | async }}" #userinput>
+                        <button (click)="copyInputMessage(userinput)" class="btn btn-secondry"  value="click to copy" >Copy from Textbox</button>
+                  </div>
+                  <form #formC="ngForm" (ngSubmit)="submit(formC)">
+                    <div class="form-group">
+                      <label for="file">Select Image :</label>
+                      <input type="file" id="file" (change)="uploadFile($event)" ngModel #file="ngModel" name="file" required>
+                      <div *ngIf="uploadPercent">Uploading {{ uploadPercent | async }}% complete</div>
+                      <div class="alert alert-danger" *ngIf="file.invalid && file.touched" role="alert">
+                          Image is required
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="text" ngModel #placeImage="ngModel" name="placeImage"  class="form-control" aria-describedby="placeImage" placeholder="Please Copy the link generated above and paste here" required>
+                          <div class="alert alert-danger" *ngIf="placeImage.invalid && placeImage.touched" role="alert">
+                              placeImage is required
+                            </div>
+                        </div>
+                      <div class="form-group">
+                          <!-- <label for="cityid">City Name</label> -->
+                          <input type="text" ngModel #placeName="ngModel" name="placeName"  class="form-control" id="login" aria-describedby="placeName" placeholder="Enter placeName" required>
+                          <div class="alert alert-danger" *ngIf="placeName.invalid && placeName.touched" role="alert">
+                              placeName is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="cityid">City Name</label> -->
+                            <input type="text" ngModel #placeDescription="ngModel" name="placeDescription"  class="form-control" id="login" aria-describedby="placeDescription" placeholder="Enter placeDescription" required>
+                            <div class="alert alert-danger" *ngIf="placeDescription.invalid && placeDescription.touched" role="alert">
+                                placeDescription is required
+                              </div>
+                          </div>  
+                          <div class="form-group">
+                            <!-- <label for="cityid">City Name</label> -->
+                            <input type="text" ngModel #placeCloseDays="ngModel" name="placeCloseDays"  class="form-control" id="login" aria-describedby="placeCloseDays" placeholder="Enter placeCloseDays" required>
+                            <div class="alert alert-danger" *ngIf="placeCloseDays.invalid && placeCloseDays.touched" role="alert">
+                                placeCloseDays is required
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                            <!-- <label for="cityid">City Name</label> -->
+                            <input type="text" ngModel #placeOpenTiming="ngModel" name="placeOpenTiming"  class="form-control" id="login" aria-describedby="placeOpenTiming" placeholder="Enter placeOpenTiming" required>
+                            <div class="alert alert-danger" *ngIf="placeOpenTiming.invalid && placeOpenTiming.touched" role="alert">
+                                placeOpenTiming is required
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                            <!-- <label for="cityid">City Name</label> -->
+                            <input type="text" ngModel #reasonToVisit="ngModel" name="reasonToVisit"  class="form-control" id="login" aria-describedby="reasonToVisit" placeholder="Enter reasonToVisit" required>
+                            <div class="alert alert-danger" *ngIf="reasonToVisit.invalid && reasonToVisit.touched" role="alert">
+                                reasonToVisit is required
+                              </div>
+                          </div>
+                  <button  class="btn btn-primary  my-3" [disabled]="formC.invalid" value="submit">Create City</button>
+                  </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <ng-container *ngFor="let p of places | async">
+    
+        <div class="card m-1" >
+            <img class="card-img-top" src="{{p.placeImage}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{p.placeName}}</h5>
+              <p class="card-text">Description - {{p.placeDescription}}</p>
+              <p >Closing Days - {{p.placeCloseDays}}</p>
+              <p>Timings - {{p.placeOpenTiming}}</p>
+              <p>Reason To Visit - {{p.reasonToVisit}}</p>
+              <a routerLink="/place/{{cityId}}/update/{{p.Id}}" class="btn btn-warning m-2">Update</a>
+              <button (click)="delete($event,cityId,p.Id)" class="btn btn-danger m-2">Delete</button>
+              
+            </div> 
+          </div>
+      
+    </ng-container>
+    </div>
+ 
+  

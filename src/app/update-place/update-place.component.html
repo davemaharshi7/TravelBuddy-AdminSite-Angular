@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="conatiner mt-2">
+      <p>Place Name : {{(items| async)?.placeName}}</p>
+      <p>Timings : {{(items| async)?.placeOpenTiming}}</p>
+      <p>Reason to Visit : {{(items| async)?.reasonToVisit}}</p>
+      <p>Closed On : {{(items| async)?.placeCloseDays}}</p>
+      <p>Description : {{(items| async)?.placeDescription}}</p>
+      <img src="{{(items| async)?.placeImage}}" alt="Image Comming...." class="img-fluid">
+    </div>
+    <h2>Update Here:</h2>
+    <div *ngIf="downloadURL">
+        <input type="text" value="{{ downloadURL | async }}" #userinput>
+              <button (click)="copyInputMessage(userinput)" class="btn btn-secondry"  value="click to copy" >Copy from Textbox</button>
+        </div>
+        <form #formC="ngForm" (ngSubmit)="submit(formC)">
+          <div class="form-group">
+            <label for="file">Select Image :</label>
+            <input type="file" id="file" (change)="uploadFile($event)" ngModel #file="ngModel" name="file" required>
+            <div *ngIf="uploadPercent">Uploading {{ uploadPercent | async }}% complete</div>
+            <div class="alert alert-danger" *ngIf="file.invalid && file.touched" role="alert">
+                Image is required
+              </div>
+            </div>
+            <div class="form-group">
+                <input type="text" ngModel #placeImage="ngModel" name="placeImage"  class="form-control" aria-describedby="placeImage" placeholder="Please Copy the link generated above and paste here" required>
+                <div class="alert alert-danger" *ngIf="placeImage.invalid && placeImage.touched" role="alert">
+                    placeImage is required
+                  </div>
+              </div>
+            <div class="form-group">
+                <!-- <label for="cityid">City Name</label> -->
+                <input type="text" ngModel #placeName="ngModel" name="placeName"  class="form-control" id="login" aria-describedby="placeName" placeholder="Enter placeName" required>
+                <div class="alert alert-danger" *ngIf="placeName.invalid && placeName.touched" role="alert">
+                    placeName is required
+                  </div>
+              </div>
+              <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #placeDescription="ngModel" name="placeDescription"  class="form-control" id="login" aria-describedby="placeDescription" placeholder="Enter placeDescription" required>
+                  <div class="alert alert-danger" *ngIf="placeDescription.invalid && placeDescription.touched" role="alert">
+                      placeDescription is required
+                    </div>
+                </div>  
+                <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #placeCloseDays="ngModel" name="placeCloseDays"  class="form-control" id="login" aria-describedby="placeCloseDays" placeholder="Enter placeCloseDays" required>
+                  <div class="alert alert-danger" *ngIf="placeCloseDays.invalid && placeCloseDays.touched" role="alert">
+                      placeCloseDays is required
+                    </div>
+                </div> 
+                <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #placeOpenTiming="ngModel" name="placeOpenTiming"  class="form-control" id="login" aria-describedby="placeOpenTiming" placeholder="Enter placeOpenTiming" required>
+                  <div class="alert alert-danger" *ngIf="placeOpenTiming.invalid && placeOpenTiming.touched" role="alert">
+                      placeOpenTiming is required
+                    </div>
+                </div> 
+                <div class="form-group">
+                  <!-- <label for="cityid">City Name</label> -->
+                  <input type="text" ngModel #reasonToVisit="ngModel" name="reasonToVisit"  class="form-control" id="login" aria-describedby="reasonToVisit" placeholder="Enter reasonToVisit" required>
+                  <div class="alert alert-danger" *ngIf="reasonToVisit.invalid && reasonToVisit.touched" role="alert">
+                      reasonToVisit is required
+                    </div>
+                </div>
+        <button  class="btn btn-primary  my-3" [disabled]="formC.invalid" value="submit">Update Place</button>
+        </form>
+  </div>

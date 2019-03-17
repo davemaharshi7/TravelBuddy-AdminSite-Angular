@@ -1,0 +1,8 @@
+.link_card{
+    text-decoration: none;
+    color: black;
+}
+.link_card:hover{
+    text-decoration: none;
+    color:white;
+}
