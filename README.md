@@ -1,4 +1,11 @@
-# Travel
+# TravelBuddy
+This is the Admin Application made in Angular 7 for TravelBuddy Android App. https://github.com/davemaharshi7/TravelBuddy
+
+This project consist of Backend of Firebase Cloud FireStore Which is new generation Database available by Firebase team.
+Dependency used in this project are-
+AngularFire - https://github.com/angular/angularfire2
+Toastr For notification
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
