@@ -1,5 +1,6 @@
 # TravelBuddy
 This is the Admin Application made in Angular 7 for TravelBuddy Android App. https://github.com/davemaharshi7/TravelBuddy
+
 This site is hosted with Firebase-
 https://travelbuddy-c5edb.firebaseapp.com
 
