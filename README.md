@@ -1,5 +1,7 @@
 # TravelBuddy
 This is the Admin Application made in Angular 7 for TravelBuddy Android App. https://github.com/davemaharshi7/TravelBuddy
+This site is hosted with Firebase-
+https://travelbuddy-c5edb.firebaseapp.com
 
 This project consist of Backend of Firebase Cloud FireStore Which is new generation Database available by Firebase team.
 Dependency used in this project are-
